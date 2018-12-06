@@ -25,7 +25,7 @@ export function logout() {
 
 export function generateRoutes() {
   return request({
-    url: '/user/generateRoutes',
-    method: 'post'
+    url: '/login/generateRoutes',
+    method: 'get'
   })
 }

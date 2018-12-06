@@ -1,5 +1,6 @@
 import { constantRouterMap } from '@/router'
 import { generateRoutes } from '@/api/login'
+import { menuInit } from '@/utils/routerMap'
 
 const permission = {
   state: {
@@ -16,15 +17,9 @@ const permission = {
     GenerateRoutes({ commit }, data) {
       return new Promise((resolve, reject) => {
         generateRoutes().then(response => {
-          // commit('SET_ROLES', data)
-          // const { roles } = data
-          // let accessedRouters
-          // if (roles.includes('admin')) {
-          //   accessedRouters = asyncRouterMap
-          // } else {
-          //   accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
-          // }
-          // commit('SET_ROUTERS', accessedRouters)
+          debugger
+          const accessedRouters = menuInit(response.data)
+          commit('SET_ROUTERS', accessedRouters)
           resolve()
         }).catch(error => {
           reject(error)
