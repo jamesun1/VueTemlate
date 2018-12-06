@@ -1,4 +1,4 @@
-import { asyncRouterMap, constantRouterMap } from '@/router'
+import { constantRouterMap } from '@/router'
 import { generateRoutes } from '@/api/login'
 
 const permission = {
