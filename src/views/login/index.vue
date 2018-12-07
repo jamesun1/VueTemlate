@@ -7,13 +7,13 @@
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.userNmae" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.userName" name="username" type="text" auto-complete="on" placeholder="username" />
       </el-form-item>
       <el-form-item prop="passWord">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input :type="pwdType" v-model="loginForm.passWord" name="password" auto-complete="on" placeholder="password"
+        <el-input :type="pwdType" v-model="loginForm.userPassword" name="password" auto-complete="on" placeholder="password"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye" />

@@ -1,20 +1,86 @@
 <template>
-  <div id="main" style="width: 100%;height:400px;"></div>
+  <div>
+    <el-select v-model="form.digit" placeholder="请选择位数">
+      <el-option v-for="item in digitList" :key="item.value" :label="item.label" :value="item.value">
+      </el-option>
+    </el-select>
+    <el-select v-model="form.number" placeholder="请选择数字">
+      <el-option v-for="item in numList" :key="item.value" :label="item.value" :value="item.value">
+      </el-option>
+    </el-select>
+    <el-select v-model="form.issue" placeholder="请选择期数">
+      <el-option v-for="item in issue" :key="item.value" :label="item.value" :value="item.value">
+      </el-option>
+    </el-select>
+    <el-button type="primary" @click="search" plain>搜索</el-button>
+    <div id="main" style="width: 100%;height:400px;"></div>
+  </div>
 </template>
 <script>
   export default {
     data() {
       return {
-        data0: []
+        data0: [],
+        digitList: [{
+          value: "1",
+          label: "个位"
+        }],
+        issue: [{
+          value: "10"
+        }, {
+          value: "50"
+        }, {
+          value: "100"
+        }, {
+          value: "200"
+        }, {
+          value: "500"
+        }, {
+          value: "1000"
+        }, {
+          value: "2000"
+        }],
+        numList: [{
+          value: '1',
+        }, {
+          value: '2',
+        }, {
+          value: '3',
+        }, {
+          value: '4',
+        }, {
+          value: '5',
+        }, {
+          value: '6',
+        }, {
+          value: '7',
+        }, {
+          value: '8',
+        }, {
+          value: '9',
+        }],
+        form: {
+          digit: "1",
+          number: "0",
+          issue: "10"
+        },
+        winningRate: "",
       }
     },
     mounted() {
       this.initCharts();
+      this.interval();
     },
     methods: {
+      interval() {
+        self.setInterval(this.search, 1000 * 60)
+      },
+      search() {
+        this.initCharts();
+      },
       initCharts() {
         this.$store
-          .dispatch("dataSource/getDataSource", "0")
+          .dispatch("dataSource/getDataSource", this.form)
           .then(responese => {
             this.initData(responese);
           })
@@ -23,8 +89,6 @@
               message: error.message ? error.message : "操作失败"
             });
           });
-        // 使用刚指定的配置项和数据显示图表。
-
       },
       initData(data) {
         var myChart = this.echarts.init(document.getElementById('main'));
@@ -32,10 +96,11 @@
         var upBorderColor = '#8A0000';
         var downColor = '#00da3c';
         var downBorderColor = '#008F28';
-        this.data0 = this.splitData(data);
+        this.data0 = this.splitData(data.dataList);
+        let winningRate = "胜率" + data.winningRate + "%";
         var option = {
           title: {
-            text: '指数',
+            text: winningRate,
             left: 0
           },
           tooltip: {
@@ -45,7 +110,7 @@
             }
           },
           legend: {
-            data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
+            data: []
           },
           grid: {
             left: '10%',
@@ -90,7 +155,7 @@
               data: this.data0.values,
               itemStyle: {
                 normal: {
-                  color: upColor,
+                  color: 'transparent',
                   color0: downColor,
                   borderColor: upBorderColor,
                   borderColor0: downBorderColor
@@ -136,57 +201,10 @@
                         emphasis: { show: false }
                       }
                     }
-                  ],
-                  {
-                    name: 'min line on close',
-                    type: 'min',
-                    valueDim: 'close'
-                  },
-                  {
-                    name: 'max line on close',
-                    type: 'max',
-                    valueDim: 'close'
-                  }
+                  ]
                 ]
               }
             },
-            {
-              name: 'MA5',
-              type: 'line',
-              data: this.calculateMA(5),
-              smooth: true,
-              lineStyle: {
-                normal: { opacity: 0.5 }
-              }
-            },
-            {
-              name: 'MA10',
-              type: 'line',
-              data: this.calculateMA(10),
-              smooth: true,
-              lineStyle: {
-                normal: { opacity: 0.5 }
-              }
-            },
-            {
-              name: 'MA20',
-              type: 'line',
-              data: this.calculateMA(20),
-              smooth: true,
-              lineStyle: {
-                normal: { opacity: 0.5 }
-              }
-            },
-            {
-              name: 'MA30',
-              type: 'line',
-              data: this.calculateMA(30),
-              smooth: true,
-              lineStyle: {
-                normal: { opacity: 0.5 }
-              }
-            },
-
           ]
         };
         myChart.setOption(option);
