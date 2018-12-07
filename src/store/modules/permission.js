@@ -17,7 +17,6 @@ const permission = {
     GenerateRoutes({ commit }, data) {
       return new Promise((resolve, reject) => {
         generateRoutes().then(response => {
-          debugger
           const accessedRouters = menuInit(response.data)
           commit('SET_ROUTERS', accessedRouters)
           resolve()

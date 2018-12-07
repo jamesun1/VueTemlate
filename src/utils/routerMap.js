@@ -1,6 +1,5 @@
 import Layout from '../views/layout/Layout'
 export function menuInit(data) {
-  debugger
   var result = []
   if (data) {
     data.forEach(function(menu) {

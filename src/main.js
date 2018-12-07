@@ -14,6 +14,8 @@ import store from './store'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import * as echarts from 'echarts'
+Vue.prototype.echarts = echarts
 
 Vue.use(ElementUI, { locale })
 
