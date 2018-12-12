@@ -13,11 +13,11 @@
       </el-option>
     </el-select>
     <el-button type="primary" @click="search" plain>搜索</el-button>
-    <el-row>
+    <el-row style="margin-top: 1%;">
       <el-col :span="6">胜率{{data.winningRate}}%</el-col>
-      <el-col :span="6">最大连出</el-col>
-      <el-col :span="6">最大遗漏</el-col>
-      <el-col :span="6">当前遗漏</el-col>
+      <el-col :span="6">最大连出{{data.maxContinue}}</el-col>
+      <el-col :span="6">最大遗漏{{data.maxNoContinue}}</el-col>
+      <el-col :span="6">当前遗漏{{data.currentNoContinue}}</el-col>
     </el-row>
     <div id="main" style="width: 100%;height:500px;"></div>
   </div>
@@ -107,7 +107,10 @@
         var downColor = '#00da3c';
         var downBorderColor = '#008F28';
         this.data0 = this.splitData(data.dataList);
-        this.$set(this.data, "winningRate", data.winningRate)
+        this.$set(this.data, "winningRate", data.winningRate);
+        this.$set(this.data, "maxContinue", data.maxContinue);
+        this.$set(this.data, "maxNoContinue", data.maxNoContinue);
+        this.$set(this.data, "currentNoContinue", data.currentNoContinue);
         var option = {
           title: {
             text: "",
