@@ -13,7 +13,13 @@
       </el-option>
     </el-select>
     <el-button type="primary" @click="search" plain>搜索</el-button>
-    <div id="main" style="width: 100%;height:400px;"></div>
+    <el-row>
+      <el-col :span="6">胜率{{data.winningRate}}%</el-col>
+      <el-col :span="6">最大连出</el-col>
+      <el-col :span="6">最大遗漏</el-col>
+      <el-col :span="6">当前遗漏</el-col>
+    </el-row>
+    <div id="main" style="width: 100%;height:500px;"></div>
   </div>
 </template>
 <script>
@@ -64,25 +70,25 @@
         form: {
           digit: "1",
           number: ["0"],
-          issue: "10"
+          issue: "50"
         },
-        winningRate: "",
+        data: {
+          winningRate: "",
+        }
       }
     },
     mounted() {
       this.initCharts();
-      // this.interval();
+      this.interval();
     },
     methods: {
       interval() {
-        debugger;
-        // self.setInterval(this.search, 1000 * 60)
+        self.setInterval(this.search, 1000 * 60)
       },
       search() {
         this.initCharts();
       },
       initCharts() {
-        debugger
         this.$store
           .dispatch("dataSource/getDataSource", this.form)
           .then(responese => {
@@ -101,10 +107,10 @@
         var downColor = '#00da3c';
         var downBorderColor = '#008F28';
         this.data0 = this.splitData(data.dataList);
-        let winningRate = "胜率" + data.winningRate + "%";
+        this.$set(this.data, "winningRate", data.winningRate)
         var option = {
           title: {
-            text: winningRate,
+            text: "",
             left: 0
           },
           tooltip: {
