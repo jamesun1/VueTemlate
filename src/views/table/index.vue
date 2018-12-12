@@ -4,7 +4,7 @@
       <el-option v-for="item in digitList" :key="item.value" :label="item.label" :value="item.value">
       </el-option>
     </el-select>
-    <el-select v-model="form.number" placeholder="请选择数字">
+    <el-select v-model="form.number" multiple collapse-tags placeholder="请选择数字">
       <el-option v-for="item in numList" :key="item.value" :label="item.value" :value="item.value">
       </el-option>
     </el-select>
@@ -41,6 +41,8 @@
           value: "2000"
         }],
         numList: [{
+          value: '0',
+        }, {
           value: '1',
         }, {
           value: '2',
@@ -61,7 +63,7 @@
         }],
         form: {
           digit: "1",
-          number: "0",
+          number: ["0"],
           issue: "10"
         },
         winningRate: "",
@@ -69,16 +71,18 @@
     },
     mounted() {
       this.initCharts();
-      this.interval();
+      // this.interval();
     },
     methods: {
       interval() {
-        self.setInterval(this.search, 1000 * 60)
+        debugger;
+        // self.setInterval(this.search, 1000 * 60)
       },
       search() {
         this.initCharts();
       },
       initCharts() {
+        debugger
         this.$store
           .dispatch("dataSource/getDataSource", this.form)
           .then(responese => {
