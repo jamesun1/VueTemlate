@@ -20,6 +20,88 @@
       <el-col :span="6">当前遗漏{{data.currentNoContinue}}</el-col>
     </el-row>
     <div id="main" style="width: 100%;height:500px;"></div>
+    <el-row>
+      <el-row>
+        <el-col :span="1">
+          0
+        </el-col>
+        <el-col :span="1">
+          {{data.zero}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          1
+        </el-col>
+        <el-col :span="1">
+          {{data.one}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          2
+        </el-col>
+        <el-col :span="1">
+          {{data.two}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          3
+        </el-col>
+        <el-col :span="1">
+          {{data.three}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          4
+        </el-col>
+        <el-col :span="1">
+          {{data.four}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          5
+        </el-col>
+        <el-col :span="1">
+          {{data.five}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          6
+        </el-col>
+        <el-col :span="1">
+          {{data.six}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          7
+        </el-col>
+        <el-col :span="1">
+          {{data.seven}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          8
+        </el-col>
+        <el-col :span="1">
+          {{data.eight}}
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="1">
+          9
+        </el-col>
+        <el-col :span="1">
+          {{data.nine}}
+        </el-col>
+      </el-row>
+    </el-row>
   </div>
 </template>
 <script>
@@ -113,6 +195,16 @@
         this.$set(this.data, "maxContinue", data.maxContinue);
         this.$set(this.data, "maxNoContinue", data.maxNoContinue);
         this.$set(this.data, "currentNoContinue", data.currentNoContinue);
+        this.$set(this.data, "zero", data.zero);
+        this.$set(this.data, "one", data.one);
+        this.$set(this.data, "two", data.two);
+        this.$set(this.data, "three", data.three);
+        this.$set(this.data, "four", data.four);
+        this.$set(this.data, "five", data.five);
+        this.$set(this.data, "six", data.six);
+        this.$set(this.data, "seven", data.seven);
+        this.$set(this.data, "eight", data.eight);
+        this.$set(this.data, "nine", data.nine);
         var option = {
           title: {
             text: "",
