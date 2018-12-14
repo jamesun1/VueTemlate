@@ -1,4 +1,4 @@
-import { getDataSource } from '@/api/dataSource'
+import { getDataSource, getDataSourceByType } from '@/api/dataSource'
 const dataSource = {
   namespaced: true,
   state: {
@@ -18,7 +18,20 @@ const dataSource = {
           reject(error)
         })
       })
-    }
+    },
+    getDataSourceByType({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        getDataSourceByType(data).then(response => {
+          if (response.code === 200) {
+            resolve(response.data)
+          } else {
+            reject(response.message)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   }
 }
 

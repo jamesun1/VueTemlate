@@ -19,93 +19,145 @@
       <el-col :span="6">最大遗漏{{data.maxNoContinue}}</el-col>
       <el-col :span="6">当前遗漏{{data.currentNoContinue}}</el-col>
     </el-row>
-    <div id="main" style="width: 100%;height:500px;"></div>
+    <div id="main" style="width: 100%;height:480px;"></div>
     <el-row>
-      <el-row>
-        <el-col :span="1">
-          0
-        </el-col>
-        <el-col :span="1">
-          {{data.zero}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          1
-        </el-col>
-        <el-col :span="1">
-          {{data.one}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          2
-        </el-col>
-        <el-col :span="1">
-          {{data.two}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          3
-        </el-col>
-        <el-col :span="1">
-          {{data.three}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          4
-        </el-col>
-        <el-col :span="1">
-          {{data.four}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          5
-        </el-col>
-        <el-col :span="1">
-          {{data.five}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          6
-        </el-col>
-        <el-col :span="1">
-          {{data.six}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          7
-        </el-col>
-        <el-col :span="1">
-          {{data.seven}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          8
-        </el-col>
-        <el-col :span="1">
-          {{data.eight}}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="1">
-          9
-        </el-col>
-        <el-col :span="1">
-          {{data.nine}}
-        </el-col>
-      </el-row>
+      <el-col :span="2">
+        <el-row>
+          <el-col :span="12">
+            0
+          </el-col>
+          <el-col :span="12">
+            {{data.zero}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            1
+          </el-col>
+          <el-col :span="12">
+            {{data.one}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            2
+          </el-col>
+          <el-col :span="12">
+            {{data.two}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            3
+          </el-col>
+          <el-col :span="12">
+            {{data.three}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            4
+          </el-col>
+          <el-col :span="12">
+            {{data.four}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            5
+          </el-col>
+          <el-col :span="12">
+            {{data.five}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            6
+          </el-col>
+          <el-col :span="12">
+            {{data.six}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            7
+          </el-col>
+          <el-col :span="12">
+            {{data.seven}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            8
+          </el-col>
+          <el-col :span="12">
+            {{data.eight}}
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            9
+          </el-col>
+          <el-col :span="12">
+            {{data.nine}}
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :span="10">
+        <el-row>
+          <el-col :span="4">
+            <el-row>
+              四码
+            </el-row>
+            <el-row style="margin-top: 20%;">
+              {{data.fourMax}}
+            </el-row>
+          </el-col>
+          <el-col :span="4">
+            <el-row>
+              五码
+            </el-row>
+            <el-row style="margin-top: 20%;">
+              {{data.fiveMax}}
+            </el-row>
+          </el-col>
+          <el-col :span="4">
+            <el-row>
+              六码
+            </el-row>
+            <el-row style="margin-top: 20%;">
+              {{data.sixMax}}
+            </el-row>
+          </el-col>
+          <el-col :span="8">
+            <el-row>
+              <el-radio-group v-model="radioValue">
+                <el-radio label="1" @change="change('1')">四码</el-radio>
+                <el-radio label="2" @change="change('2')">五码</el-radio>
+                <el-radio label="3" @change="change('3')">六码</el-radio>
+              </el-radio-group>
+            </el-row>
+          </el-col>
+        </el-row>
+        <el-row style="margin-top: 4%;">
+          <el-row>
+            最新一期结果
+          </el-row>
+          <el-row>
+            {{data.lastNum}}
+          </el-row>
+        </el-row>
+      </el-col>
+      <el-col :span="10">
+        <tableTemp ref="tableTemp" :name="type"></tableTemp>
+      </el-col>
     </el-row>
   </div>
 </template>
 <script>
+  import tableTemp from "./table"
   export default {
+    components: { tableTemp },
     data() {
       return {
         data0: [],
@@ -158,14 +210,22 @@
         },
         data: {
           winningRate: "",
-        }
+        },
+        activeName: "1",
+        radioValue: "1",
+        type: "1"
       }
     },
     mounted() {
       this.initCharts();
       this.interval();
+      this.$refs.tableTemp.tableInit("1");
     },
     methods: {
+      change(name) {
+        this.type = name;
+        this.$refs.tableTemp.tableInit(name);
+      },
       interval() {
         self.setInterval(this.search, 1000 * 60)
       },
@@ -205,6 +265,12 @@
         this.$set(this.data, "seven", data.seven);
         this.$set(this.data, "eight", data.eight);
         this.$set(this.data, "nine", data.nine);
+        this.$set(this.data, "fourMax", this.dataToString(data.fourMax));
+        this.$set(this.data, "fiveMax", this.dataToString(data.fiveMax));
+        this.$set(this.data, "sixMax", this.dataToString(data.sixMax));
+        this.$set(this.data, "lastNum", data.lastNum);
+
+        // 
         var option = {
           title: {
             text: "",
@@ -342,6 +408,16 @@
           result.push(sum / dayCount);
         }
         return result;
+      },
+      dataToString(data) {
+        let str = "";
+        for (let item of data) {
+          if (str.length > 0) {
+            str = str + ",";
+          }
+          str = str + item.num;
+        }
+        return str;
       }
     }
   }

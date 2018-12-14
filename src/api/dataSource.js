@@ -7,3 +7,11 @@ export function getDataSource(data) {
     data: data
   })
 }
+
+export function getDataSourceByType(data) {
+  return request({
+    url: '/dataSource/getDataSourceByType',
+    method: 'post',
+    data: data
+  })
+}
