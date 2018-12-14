@@ -7,7 +7,11 @@
             </el-table-column>
             <el-table-column prop="winNum" label="结果号码">
             </el-table-column>
-            <el-table-column prop="win" :formatter="formatter" label="胜/负">
+            <el-table-column prop="win" label="胜/负">
+                <template slot-scope="scope">
+                    <el-tag v-if="scope.row.win === '0'" type="danger">胜</el-tag>
+                    <el-tag v-if="scope.row.win === '1'">负</el-tag>
+                </template>
             </el-table-column>
             <el-table-column prop="createTime" :formatter="formatterTime" label="创建时间">
             </el-table-column>

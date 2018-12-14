@@ -133,7 +133,9 @@
             <el-row>
               <el-radio-group v-model="radioValue">
                 <el-radio label="1" @change="change('1')">四码</el-radio>
+                <br />
                 <el-radio label="2" @change="change('2')">五码</el-radio>
+                <br />
                 <el-radio label="3" @change="change('3')">六码</el-radio>
               </el-radio-group>
             </el-row>
