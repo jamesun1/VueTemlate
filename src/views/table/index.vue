@@ -113,7 +113,7 @@
               {{data.fourMax}}
             </el-row>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="3">
             <el-row>
               五码
             </el-row>
@@ -129,7 +129,7 @@
               {{data.sixMax}}
             </el-row>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="9">
             <el-row>
               <el-radio-group v-model="radioValue">
                 <el-radio label="1" @change="change('1')">四码</el-radio>

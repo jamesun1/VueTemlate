@@ -7,9 +7,9 @@
             </el-table-column>
             <el-table-column prop="winNum" label="结果号码">
             </el-table-column>
-            <el-table-column prop="win" label="胜/负">
+            <el-table-column prop="win" :formatter="formatter" label="胜/负">
             </el-table-column>
-            <el-table-column prop="createTime" label="胜/负">
+            <el-table-column prop="createTime" :formatter="formatterTime" label="创建时间">
             </el-table-column>
         </el-table>
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import { parseTime } from "@/utils/index";
     export default {
         props: ["name"],
         data() {
@@ -30,6 +31,16 @@
             }
         },
         methods: {
+            formatterTime(value) {
+                return parseTime(value.createTime, "{y}-{m}-{d} {h}:{i}:{s}");
+            },
+            formatter(value) {
+                if (value.win === "0") {
+                    return "胜";
+                } else {
+                    return "挂";
+                }
+            },
             handleSizeChange(val) {
                 this.pageSize = val;
                 this.tableInit();
