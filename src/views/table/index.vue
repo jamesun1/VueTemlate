@@ -129,16 +129,31 @@
               {{data.sixMax}}
             </el-row>
           </el-col>
-          <el-col :span="9">
-            <el-row>
-              <el-radio-group v-model="radioValue">
+          <el-col :span="11">
+            <el-col :span="8">
+              <el-row>
+                <el-radio-group v-model="radioValue">
                 <el-radio label="1" @change="change('1')">四码</el-radio>
                 <br />
                 <el-radio label="2" @change="change('2')">五码</el-radio>
                 <br />
                 <el-radio label="3" @change="change('3')">六码</el-radio>
               </el-radio-group>
-            </el-row>
+              </el-row>
+            </el-col>
+            <el-col :span="16">
+              <el-row>
+                <div>
+                  当前概率:{{data.fourProbability}},胜:{{data.fourMaxContinue}},挂:{{data.fourMinContinue}}
+                </div>
+                <div>
+                  当前概率:{{data.fiveProbability}},胜:{{data.fiveMaxContinue}},挂:{{data.fiveMinContinue}}
+                </div>
+                <div>
+                  当前概率:{{data.sixProbability}},胜:{{data.sixMaxContinue}},挂:{{data.sixMinContinue}}
+                </div>
+              </el-row>
+            </el-col>
           </el-col>
         </el-row>
         <el-row style="margin-top: 4%;">
@@ -271,6 +286,16 @@
         this.$set(this.data, "fiveMax", this.dataToString(data.fiveMax));
         this.$set(this.data, "sixMax", this.dataToString(data.sixMax));
         this.$set(this.data, "lastNum", data.lastNum);
+
+        this.$set(this.data, "fourProbability", data.fourProbability);
+        this.$set(this.data, "fiveProbability", data.fiveProbability);
+        this.$set(this.data, "sixProbability", data.sixProbability);
+        this.$set(this.data, "fourMaxContinue", data.fourMaxContinue);
+        this.$set(this.data, "fiveMaxContinue", data.fiveMaxContinue);
+        this.$set(this.data, "sixMaxContinue", data.sixMaxContinue);
+        this.$set(this.data, "fourMinContinue", data.fourMinContinue);
+        this.$set(this.data, "fiveMinContinue", data.fiveMinContinue);
+        this.$set(this.data, "sixMinContinue", data.sixMinContinue);
 
         // 
         var option = {
