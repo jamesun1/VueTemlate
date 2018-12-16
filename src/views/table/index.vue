@@ -133,12 +133,12 @@
             <el-col :span="8">
               <el-row>
                 <el-radio-group v-model="radioValue">
-                <el-radio label="1" @change="change('1')">四码</el-radio>
-                <br />
-                <el-radio label="2" @change="change('2')">五码</el-radio>
-                <br />
-                <el-radio label="3" @change="change('3')">六码</el-radio>
-              </el-radio-group>
+                  <el-radio label="1" @change="change('1')">四码</el-radio>
+                  <br />
+                  <el-radio label="2" @change="change('2')">五码</el-radio>
+                  <br />
+                  <el-radio label="3" @change="change('3')">六码</el-radio>
+                </el-radio-group>
               </el-row>
             </el-col>
             <el-col :span="16">
@@ -230,21 +230,36 @@
         },
         activeName: "1",
         radioValue: "1",
-        type: "1"
+        type: "1",
+        timer: null
+      }
+    },
+    created() {
+      let date = new Date();
+      let dateIntegralPoint = new Date();
+      dateIntegralPoint.setHours(date.getHours());//小时数增加1
+      dateIntegralPoint.setMinutes(date.getMinutes() + 1);
+      dateIntegralPoint.setSeconds(0);
+      setTimeout(this.startMethod, dateIntegralPoint - date);
+
+    },
+    beforeDestroy() {
+      if (this.timer) { //如果定时器还在运行 或者直接关闭，不用判断
+        clearInterval(this.timer); //关闭
       }
     },
     mounted() {
       this.initCharts();
-      this.interval();
       this.$refs.tableTemp.tableInit("1");
     },
     methods: {
+      startMethod() {
+        this.initCharts();
+        this.timer = setInterval(this.initCharts, 1000 * 60);
+      },
       change(name) {
         this.type = name;
         this.$refs.tableTemp.tableInit(name);
-      },
-      interval() {
-        self.setInterval(this.search, 1000 * 60)
       },
       search() {
         this.initCharts();
