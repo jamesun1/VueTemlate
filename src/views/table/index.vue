@@ -127,7 +127,7 @@
             type: 'bb',
             topLine: { // 上轨线
               styles: {
-                lineColor: 'yellow'
+                lineColor: 'blue'
               }
             },
             bottomLine: {  // 下轨线
